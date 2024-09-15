@@ -1,60 +1,62 @@
 <odoo>
-  <data>
-    <!-- explicit list view definition -->
-<!--
-    <record model="ir.ui.view" id="attendance_modificationreq.list">
-      <field name="name">attendanceModificationreq list</field>
-      <field name="model">attendance_modificationreq.attendance_modificationreq</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
+    <!-- Form View -->
+    <record id="view_attendance_modificationreq_form" model="ir.ui.view">
+        <field name="name">attendance.modificationreq.form</field>
+        <field name="model">attendance_modificationreq.attendance_modificationreq</field>
+        <field name="arch" type="xml">
+            <form string="Attendance Modification Request">
+                <header>
+                    <button string="Confirm" type="object" name="action_confirm"
+                            class="oe_highlight" invisible="state != 'draft' "
+                            />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="employeename"/>
+                        <field name="date"/>
+                        <field name="type"/>
+                        <field name="action"/>
+                    </group>
+                    <group>
+                        <field name="reason"/>
+                    </group>
+                    <group>
+                        <field name="state" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="attendance" invisible= "action=='new_record'"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
     </record>
--->
 
-    <!-- actions opening views on models -->
-<!--
-    <record model="ir.actions.act_window" id="attendance_modificationreq.action_window">
-      <field name="name">attendanceModificationreq window</field>
-      <field name="res_model">attendance_modificationreq.attendance_modificationreq</field>
-      <field name="view_mode">tree,form</field>
+    <!-- Tree View -->
+    <record id="view_attendance_modificationreq_tree" model="ir.ui.view">
+        <field name="name">attendance.modificationreq.tree</field>
+        <field name="model">attendance_modificationreq.attendance_modificationreq</field>
+        <field name="arch" type="xml">
+            <tree string="Attendance Modification Requests">
+                <field name="name"/>
+                <field name="employeename"/>
+                <field name="date"/> <!-- Update here from 'Date' to 'date' -->
+                <field name="type"/>
+                <field name="state"/>
+            </tree>
+        </field>
     </record>
--->
 
-    <!-- server action to the one above -->
-<!--
-    <record model="ir.actions.server" id="attendance_modificationreq.action_server">
-      <field name="name">attendanceModificationreq server</field>
-      <field name="model_id" ref="model_attendance_modificationreq_attendance_modificationreq"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": model._name,
-        }
-      </field>
+    <!-- Action to Open Views -->
+    <record id="action_attendance_modificationreq" model="ir.actions.act_window">
+        <field name="name">Attendance Modification Requests</field>
+        <field name="res_model">attendance_modificationreq.attendance_modificationreq</field>
+        <field name="view_mode">tree,form</field>
     </record>
--->
 
-    <!-- Top menu item -->
-<!--
-    <menuitem name="attendanceModificationreq" id="attendance_modificationreq.menu_root"/>
--->
-    <!-- menu categories -->
-<!--
-    <menuitem name="Menu 1" id="attendance_modificationreq.menu_1" parent="attendance_modificationreq.menu_root"/>
-    <menuitem name="Menu 2" id="attendance_modificationreq.menu_2" parent="attendance_modificationreq.menu_root"/>
--->
-    <!-- actions -->
-<!--
-    <menuitem name="List" id="attendance_modificationreq.menu_1_list" parent="attendance_modificationreq.menu_1"
-              action="attendance_modificationreq.action_window"/>
-    <menuitem name="Server to list" id="attendance_modificationreq" parent="attendance_modificationreq.menu_2"
-              action="attendance_modificationreq.action_server"/>
--->
-  </data>
+    <!-- Menu Item -->
+    <menuitem id="menu_attendance_modificationreq" name="Attendance Modification Requests"
+              parent="hr_attendance.menu_hr_attendance_root"
+              action="action_attendance_modificationreq"/>
 </odoo>

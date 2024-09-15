@@ -18,14 +18,14 @@ Long description of module's purpose
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'hr'],
+    'depends': ['base', 'hr_attendance'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        'views/views.xml',
+        'views/invoiceRental.xml',
         'views/templates.xml',
-         'views/sequence_data.xml',
+         'views/my_module_sequence.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
