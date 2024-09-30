@@ -24,7 +24,7 @@ Long description of module's purpose
     'data': [
         'security/ir.model.access.csv',
         'views/invoiceRental.xml',
-        'views/templates.xml',
+        'views/wizard_detail_view.xml',
          'views/my_module_sequence.xml',
     ],
     # only loaded in demonstration mode
